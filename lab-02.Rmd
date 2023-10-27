@@ -1,0 +1,264 @@
+---
+title: "lab-02_Funciones_Principales_R"
+output: html_document
+date: "2023-10-12"
+---
+
+---
+title: 'lab02: Introducción al R'
+output: html_document
+date: "2023-10-05"
+---
+
+# Lab 02: introduccion al R
+
+Primer laboratorio donde se revisaran algunas de las principales 
+caracteristicas del R.
+
+#c.	Haciendo el primer programa en R. •	print( “hola mundo”):
+```{r}
+
+print("hola Mundo !!!")
+
+```
+
+## d.	Utilizando el R como calculadora:
+# Realizar la suma de 3 + 4 
+#	Realizar la siguiente operación (2  + 4/2) * 3
+#	Calcular el área de un círculo que tiene radio 10 cm
+#	Calcular x de la expresión 10^(x+2) = 300
+
+```{r}
+print(3 + 4)
+
+print((2 + 4/2) * 3)
+
+#area de circulo
+print(3.1416 * 10^2) 
+print(pi * 10^2)
+
+# 10^(x + 2) = 300;
+# x = log(300)/log(10) - 2
+print(log(300)/log(10) - 2)
+
+```
+### e.	Crear un vector denominado edad con los siguientes valores: 23, 24, 25, 26, 27, 27, 28, 21, 18, 17, 17, 17, 16, 15, 15
+```{r}
+edad <- c( 23, 24, 25, 26, 27, 27, 28, 21, 18, 17, 17, 17, 16, 15, 15)
+#f.	Obtener el número de elementos del vector edad, y almacenarlo en la variable n_edad
+n_edad <- length(edad)
+print(n_edad)
+
+```
+#g.	Slicing, se refiere a obtener valores de un vector, matriz o dataframe, con base al vector edad obtener:
+#	El primer elemento	
+#El último elemento
+#El 3er y 4to elemento
+#Los 3 primeros elementos 
+#Los 2 últimos elementos
+
+```{r}
+edad[1]
+edad[n_edad]
+edad[n_edad:n_edad -1]
+edad[3:4]
+edad[c(n_edad-1,n_edad)]
+edad[c(length(edad)-1,length(edad))]
+edad[(length(edad)-1):(length(edad))]
+```
+##### h.	Estructuras de Control al igual que como en otros lenguajes de programación R tiene la estructura de control if, utilice para hacer la siguiente comparación si una determinada variable temperatura cuyo dato es numérico es mayor a 38 se imprima la palabra “fiebre”, en caso contrario “normal”. Modifique el valor de temperatura a 36 y pruebe el siguiente script, cambie el valor a 38.5 y vuelva ejecutar los resultados.
+#temperatura <- 39
+
+#if (temperatura > 38) {
+  
+# print("fiebre")
+  
+#}else{
+  
+#  print("normal")
+  
+#}
+#
+```{r}
+#estructura de control:
+
+temperatura <- 39
+
+if (temperatura > 38) {
+  
+  print("fiebre")
+  
+}else{
+  
+  print("normal")
+  
+}
+
+temperatura <- 36
+
+if (temperatura > 38) {
+  
+  print("fiebre")
+  
+}else{
+  
+  print("normal")
+  
+}
+
+temperatura <- 38.5
+
+if (temperatura > 38) {
+  
+  print("fiebre")
+  
+}else{
+  
+  print("normal")
+  
+}
+```
+```{r}
+
+
+a <- (5 > 3)
+
+b <- (5 > 8) 
+# operaciones logicas:
+print(a | b)
+print(a & b)
+print(!b)
+
+```
+#j.	Otra estructura de control muy utilizada en el R es el for, revise el siguiente script que suma las 3 primeras edades del vector edad. Revise el código y modifíquelo para sumar los primeros 5 elementos. Vuelva a modificarlos para sumar todos los elementos del vector edad.
+```{r}
+n_elementos <- 3
+
+suma_edades <- 0
+
+for (i in 1:n_elementos) {
+  suma_edades <- suma_edades + edad[i]
+  
+}
+
+print(suma_edades)
+print(sum(edad[1:n_elementos]))
+```
+#k.	Realice un script para determinar la media y mediana del vector edad. Recuerde que:
+#•	 la media o promedio = suma(elementos) / número(elementos) 
+#•	Mediana es la posición central de los elementos, en R existe una función sort aplicada sobre un vector que nos devuelve un vector ordenado ascendentemente.
+
+```{r}
+mean(edad)
+
+sum(edad)/length(edad)
+
+median(edad)
+
+```
+#l.	Determine los elementos del vector edad que son mayores a 20.
+```{r}
+edad
+for (i in edad) {
+  if (i > 20) {
+    print(i)
+  }
+}
+
+```
+
+
+#n.	Cree una función que determine el área de un cuadrado dado su lado, denomínela area_cuadrado
+
+```{r}
+
+area_cuadrado <- function (lado ) {
+  # retorna el area de un cuadrado de lado
+  return(lado^2)
+}
+
+area_cuadrado(5)
+
+area_cuadrado(c(5,7))
+
+help("median")
+```
+#o.	Autodocumente su función.
+
+#p.	Cree una función fiebre que retorne T o TRUE verdadero si una persona tiene más de 38 grados de temperatura y F o FALSE en caso contrario.
+```{r}
+fiebre <- function (temp) {
+  if (temp > 38) {
+    print(TRUE)
+  } else {
+    print(FALSE)
+  }
+  
+}
+fiebre(35)
+```
+
+#q.	Cree una matriz a partir de 5x3 a partir del vector de edades, utilice la función matrix del R.
+#•	Una forma de revisar la documentación de R es utilizar la función help( )
+#•	Las otras formas son googlear y colocar al final la frase “ … in R”.
+#•	Buenas fuentes de referencias son StackOverflow y demás foros en Internet.
+
+```{r}
+matriz_edad_columna <- matrix( edad,nrow=3)
+matriz_edad_columna
+
+help(matrix)
+```
+#r.	Guarde los resultados en matriz_por_columna
+```{r}
+matriz_edad_columna
+```
+#s.	Modifique la creación para que los elementos sean ordenados por filas y llámela matriz_por_fila. Tip: revise el parámetro byrow
+```{r}
+matriz_edad_fila <- matrix(edad, nrow = 3, byrow = TRUE)
+matriz_edad_fila
+```
+#t.	De la matriz_por_columna, aplique técnicas de slicing para:
+
+#	Obtener la edad de la primera fila y la segunda columna
+#	Obtenga la primera fila
+#	Obtenga de la tercera fila el segundo y tercer elemento
+#	Obtenga la primer fila
+#	Obtenga los elementos de la 3ra columna
+
+```{r}
+matriz_edad_columna
+matriz_edad_columna[1,2]
+matriz_edad_columna[1,]
+matriz_edad_columna[3,2:3]
+matriz_edad_columna[1,]
+matriz_edad_columna[,3]
+```
+
+#u.	El R tiene varias funciones para determinar las dimensiones de una matriz:
+#nrow: para obtener el número de filas
+#	ncol: para obtener el número de columnas
+#	dim: para obtener las filas y columnas
+
+```{r}
+matriz_A <- matrix(edad, nrow = 5, ncol = 6 , byrow = TRUE)
+matriz_A
+dim(matriz_A)
+ncol(matriz_A)
+nrow(matriz_A)
+
+```
+
+#v.	Obtenga la media de los elementos de las edades por columna. Tip: La forma vectorial es aplicar la función apply.
+
+```{r}
+matriz_edad_columna
+help(mean)
+mean(matriz_edad_columna[,1], trim = 1)
+mean(matriz_edad_columna[,2])
+mean(matriz_edad_columna[,3])
+mean(matriz_edad_columna[,4])
+mean(matriz_edad_columna[,5], trim = 0,na.rm = TRUE)
+
+```
+
